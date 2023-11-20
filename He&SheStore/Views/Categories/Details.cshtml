@@ -1,0 +1,49 @@
+﻿@model He_SheStore.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <style>
+        .row, h1, div a {
+            margin-left: 5%;
+            margin-top: 2%;
+        }
+
+        .form-group {
+            margin-bottom: 2%;
+        }
+    </style>
+</head>
+<h1>Category Details</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryImage)
+        </dt>
+        <dd class="col-sm-10">
+            <img src=@Url.Content("~/Images/" + Model.CategoryImage)
+                 asp-append-version="true" style="border-radius:20%;"
+                 width="200" height="150" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CategoryId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

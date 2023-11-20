@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Category>
+
+@{
+	ViewData["Title"] = "Categories";
+	Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+
+}
+
+<body>
+	
+	
+
+	<!--Category title-->
+    <div class="p-b-10">
+			
+		<h3 class="ltext-103 cl5" style="padding-left:150px; padding-top:150px;">
+			Collections Overview
+		</h3>
+	</div>
+	<!-- Categories -->
+	<div class="sec-banner bg0">
+		<div class="container">
+			<div class="p-b-10">
+			</div>
+			<br />
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+						<div class="block1 wrap-pic-w">
+							<!-- Card Content -->
+							<img src="@Url.Content("~/Images/" + item.CategoryImage)" asp-append-version="true" width="200" height="200" />
+
+							<a asp-action="GetProductByCategory2" asp-route-id="@item.CategoryId" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+								<div class="block1-txt-child1 flex-col-l">
+									<span class="block1-name ltext-102 trans-04 p-b-8">
+										@item.CategoryName
+									</span>
+
+									<span class="block1-link stext-101 cl0 trans-04">
+										<br>
+										@item.CategoryDescription
+									</span>
+								</div>
+
+								<div class="block1-txt-child2 p-b-4 trans-05">
+									<div class="block1-link stext-101 cl0 trans-04">
+										Shop Now
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	
+</body>

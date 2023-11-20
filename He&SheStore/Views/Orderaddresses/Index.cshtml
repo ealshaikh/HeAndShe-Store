@@ -1,0 +1,78 @@
+﻿@model IEnumerable<He_SheStore.Models.Orderaddress>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Streetnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postalcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phonenumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Streetnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postalcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phonenumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrderAddressId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderAddressId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderAddressId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

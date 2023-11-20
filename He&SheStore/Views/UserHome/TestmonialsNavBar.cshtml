@@ -1,0 +1,203 @@
+﻿@model Tuple<IEnumerable<Testmonial>, IEnumerable<Customer>>
+
+@{
+	ViewData["Title"] = "TestmonialsNavBar";
+	Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+}
+
+<head>
+	<style>
+		h2 {
+			color: #333;
+			text-align: center;
+			text-transform: uppercase;
+			font-family: 'Poppins-Regular';
+			font-weight: bold;
+			position: relative;
+			margin: 25px 0 50px;
+		}
+
+			h2::after {
+				content: "";
+				width: 100px;
+				position: absolute;
+				margin: 0 auto;
+				height: 3px;
+				background: #ffdc12;
+				left: 0;
+				right: 0;
+				bottom: -10px;
+			}
+
+		.carousel {
+			width: 650px;
+			margin: 0 auto;
+			padding-bottom: 50px;
+		}
+
+			.carousel .carousel-item {
+				color: #999;
+				font-size: 14px;
+				text-align: center;
+				overflow: hidden;
+				min-height: 340px;
+			}
+
+				.carousel .carousel-item a {
+					color: #eb7245;
+				}
+
+			.carousel .img-box {
+				width: 145px;
+				height: 145px;
+				margin: 0 auto;
+				border-radius: 50%;
+			}
+
+				.carousel .img-box img {
+					width: 100%;
+					height: 100%;
+					display: block;
+					border-radius: 50%;
+				}
+
+			.carousel .testimonial {
+				padding: 30px 0 10px;
+			}
+
+			.carousel .overview {
+				text-align: center;
+				padding-bottom: 5px;
+			}
+
+				.carousel .overview b {
+					color: #333;
+					font-size: 15px;
+					text-transform: uppercase;
+					display: block;
+					padding-bottom: 5px;
+				}
+
+			.carousel .star-rating i {
+				font-size: 18px;
+				color: #ffdc12;
+			}
+
+		.carousel-control-prev, .carousel-control-next {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #000;
+			text-shadow: none;
+			top: 4px;
+		}
+
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 20px;
+				margin-right: 2px;
+			}
+
+		.carousel-control-prev {
+			left: auto;
+			right: 40px;
+		}
+
+		.carousel-control-next i {
+			margin-right: -2px;
+		}
+
+		.carousel .carousel-indicators {
+			bottom: 15px;
+		}
+
+		.carousel-indicators li, .carousel-indicators li.active {
+			width: 11px;
+			height: 11px;
+			margin: 1px 5px;
+			border-radius: 50%;
+		}
+
+		/* .carousel-indicators li {
+									background: #e2e2e2;
+									border: none;
+								} */
+
+		.carousel-indicators li {
+			background: #927777;
+			border: none;
+		}
+
+			.carousel-indicators li.active {
+				background: #888;
+			}
+
+		h5 {
+			font-size: 1.2rem;
+			background: #ffdc1299;
+			width: fit-content;
+			font-family: monospace;
+			margin: auto;
+		}
+	</style>
+</head>
+
+
+<body>
+	
+	<br />
+	<br />
+	<br />
+	<br />
+
+
+	<!--Testmoianls-->
+	<h2> Happy Customer says</h2>
+
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			@for (int i = 0; i < Model.Item1.Count(); i++)
+			{
+				<li data-target="#myCarousel" data-slide-to="@i" class="@((i == 0) ? "active" : "")"></li>
+			}
+		</ol>
+
+		<!-- Wrapper for carousel items -->
+		<div class="carousel-inner">
+			@foreach (var testimonialItem in Model.Item1.Where(t => t.Status == "Accepted"))
+			{
+				<div class="carousel-item @(testimonialItem == Model.Item1.First(t => t.Status == "Accepted") ? "active" : "")">
+					<div class="img-box">
+						<img src="@Url.Content("~/Images/" + testimonialItem.Customer.Profilepicture)" asp-append-version="true" alt="IMG-PRODUCT" height="400px;">
+					</div>
+					<p class="testimonial">@testimonialItem.Comment</p>
+					<p class="overview"><b>@testimonialItem.Customer.Fname @testimonialItem.Customer.Lname</b></p>
+				</div>
+			}
+		</div>
+
+		<!-- Carousel controls -->
+		<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+			<i class="fa fa-angle-left"></i>
+		</a>
+		<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</div>
+
+
+
+
+
+
+	<h5>Excited to hear form you!  <a asp-action="UserAddTestiminal" asp-controller="UserHome"> Tell us</a> now!</h5>
+	<br />
+	<br />
+	<br />
+
+	
+
+
+
+</body>

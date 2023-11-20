@@ -1,0 +1,86 @@
+﻿@model UserLogin;
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/LoginRegister/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/LoginRegister/css/style.css">
+
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="containe">
+                <div class="signin-content">
+                    <div class="signup-image">
+                        <figure><img src="~/loginregister/wavy_gen-01_single-07.jpg" /></figure>
+                        <a asp-action="Register" asp-controller="LoginAndRegister" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Login</h2>
+                        <form asp-action="Login" method="POST" class="register-form" id="login-form">
+                            <!--Email-->
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" asp-for="Email" placeholder=" Email or Username" />
+                            </div>
+                            <!--Password-->
+
+                            <div class="form-group">
+
+                                <label for="your_pass"><span toggle="#passwordField" class="zmdi zmdi-eye field-icon toggle-password"></span></label>
+                                <input type="password" asp-for="Password" placeholder="Password" id="passwordField" />
+
+                            </div>
+
+                            <!--Submit-->
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/LoginRegister/vendor/jquery/jquery.min.js"></script>
+    <script src="~/LoginRegister/js/main.js"></script>
+    <script src="~/loginregister/vendor/jquery/jquery-ui.min.js"></script>
+
+    <script>
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordField = document.querySelector('#passwordField');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.classList.toggle('zmdi-eye');
+            this.classList.toggle('zmdi-eye-off');
+        });
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,133 @@
+﻿@model Tuple<IEnumerable<Category>, IEnumerable<Product>>
+
+@{
+	ViewData["Title"] = "Products";
+	Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+
+}
+
+
+
+<body>
+
+
+
+	<!--Products title-->
+	<div class="p-b-10">
+
+		<h3 class="ltext-103 cl5" style="padding-left:150px; padding-top:150px;">
+			Products Overview
+		</h3>
+	</div>
+	<!-- Products -->
+
+
+
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">
+				</h3>
+			</div>
+
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						All Products
+					</button>
+
+
+
+
+
+					@foreach (var category in Model.Item1)
+					{
+						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".@category.CategoryId">
+							@category.CategoryName
+						</button>
+					}
+				</div>
+
+			@* 	<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Filter
+					</div>
+
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Search
+					</div>
+				</div> *@
+
+
+			</div>
+
+			<div class="row isotope-grid">
+				@foreach (var item in Model.Item2)
+				{
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryId">
+						<!-- This div represents an individual product -->
+						<div class="block2" style=" padding:8%; border: 1px solid #e6e6e6">
+							<div class="block2-pic hov-img0">
+								<img src="@Url.Content("~/Images/" + item.ProductImage)" asp-append-version="true" width="200" height="200" />
+
+								<a asp-action="Details2" asp-route-id="@item.ProductId" class="block2-btn  flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+									Quick View
+								</a>
+							</div>
+
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l">
+									<a class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										@item.ProductName
+									</a>
+									<span class="stext-105 cl3">
+										@item.ProductPrice JD
+									</span>
+									@if (item.AverageRating.HasValue)
+									{
+										<div style="font-size:13px;">
+@* 											Average Ratings: @item.AverageRating <i class="item-rating  zmdi zmdi-star" style="color:#f9ba48; "></i>
+ *@											Average Ratings: @Math.Round( @item.AverageRating ?? 0, 1) <i class="item-rating zmdi zmdi-star" style="color:#f9ba48;"></i>
+										</div>
+									}
+									else
+									{
+										<div style="font-size:12px;">
+											No Ratings Yet
+										</div>
+									}
+								</div>
+
+								<div class="block2-txt-child2 flex-r p-t-3">
+									<form asp-action="AddToWishlist" asp-controller="Wishlists" class="ml-2" style="display: inline-block;">
+										<input type="hidden" name="productId" value="@item.ProductId" />
+										<button class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 tooltip100" data-tooltip="Add to Wishlist">
+											<i class="zmdi zmdi-favorite-outline" style="font-size:20px;"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- End of individual product -->
+					</div>
+				}
+			</div>
+
+
+
+
+
+		</div>
+	</section>
+
+
+
+
+
+
+
+</body>

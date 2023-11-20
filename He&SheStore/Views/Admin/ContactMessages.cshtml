@@ -1,0 +1,204 @@
+﻿@model IEnumerable<He_SheStore.Models.Contact>
+
+@{
+    ViewData["Title"] = "ContactMessages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+
+}
+
+<head>
+    <script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+
+
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <style>
+     
+        h1 {
+            margin-left: 3%;
+            margin-top: 6%;
+            margin-bottom :3%;
+            background: #6568f8;
+            width: fit-content;
+            color: white;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+       
+        p a {
+            color: #787aff !important;
+            margin-left: 5%;
+        }
+
+       
+
+            .custom-table th {
+                color: #fff;
+                font-weight: bold;
+                font-size: 15px;
+                background: #696cff;
+                padding: 10px;
+            }
+
+            .custom-table td {
+                background: #9eaab8;
+                color: #fff;
+                font-weight: 500;
+                font-size: 15px;
+                padding: 10px;
+            }
+
+        .custom-button {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 100;
+        }
+
+            .custom-button i {
+                color: #ffffff;
+                font-size: 13px;
+            }
+
+        table.dataTable {
+            width: 95%;
+            margin: 0 auto;
+            clear: both;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        div.dt-buttons {
+            position: relative; 
+            float: left;
+            margin-left: 3%;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+             float: right;
+            text-align: right;
+            margin-right: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            clear: both;
+            float: left;
+            padding-top: 0.755em;
+            margin-left: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right;
+            text-align: right;
+            padding-top: 0.25em;
+            margin-right: 5%;
+        }
+
+        .custom-button {
+            display: inline-block;
+            margin-right: 5px; /* Adjust the margin between buttons as needed */
+        }
+    </style>
+</head>
+<h1>Contact Messages</h1>
+
+<div>
+
+    <table class=" table-bordered custom-table" id="example">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fullname)
+                </th>
+                <th>
+
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
+                <th>
+                    Subject
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Messeage)
+                </th>
+
+                <th>Control</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fullname)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Messeage)
+                    </td>
+                    <td>
+                        <button class="btn btn-danger custom-button"><a asp-action="DeleteMessages" asp-route-id="@item.ContactId" style="color:#fff;">Delete</a> </button>
+
+
+                     @*    <div class="btn-group" role="group" aria-label="Testimonial Controls">
+                            <button class="btn btn-danger custom-button"><a asp-action="DeleteMessages" asp-route-id="@item.ContactId" style="color:#fff;">Delete</a> </button>
+                            <button class="btn btn-success custom-button"><a asp-action="SeenMessages" asp-route-id="@item.ContactId" style="color:#fff">Seen</a> </button>
+
+                        </div> *@
+                      
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+<script>
+
+    $(document).ready(function () {
+        //example id
+        $('#example').DataTable({
+
+            dom: 'Bfrtip',
+            //ican delete it
+            buttons: [
+
+                'copyHtml5',
+
+                'excelHtml5',
+
+                'csvHtml5',
+
+                'pdfHtml5'
+
+            ]
+
+        });
+    });
+
+</script>

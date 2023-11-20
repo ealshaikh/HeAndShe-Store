@@ -1,0 +1,75 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+}
+<head>
+    <style>
+        h2{
+            padding-top: 135px;
+            padding-bottom: 40px;
+            padding-left: 10%;
+        }
+
+       
+    </style>
+</head>
+
+
+<h2>Order Details</h2>
+<br />
+
+<table class="table table-bordered" style="width:80%; margin:auto auto;">
+    <thead style="background: #4f58ad; color:#fff">
+        <tr>
+            <th>Item Name</th>          
+            <th>Item Image</th>          
+            <th>Item Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+@*             <th>Remove item</th>
+ *@        </tr>
+    </thead>
+    <tbody>
+             @foreach (var item in Model.Orderitems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </td>
+                   <td>
+                    <img src="@Url.Content("~/Images/" + item.Product.ProductImage)" asp-append-version="true" style="border:none;" width="150" height="100" />
+
+                   </td>
+                <td> @Html.DisplayFor(modelItem => item.Product.ProductPrice)</td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Quantitiy)
+                </td>
+                <td>
+                      @Html.DisplayFor(modelItem => item.ItemPrice)
+                    </td>
+
+                <!-- Delete Item Button -->
+               @*  <td>
+                    <form asp-action="DeleteItem" asp-controller="Orders" method="post">
+                        <input type="hidden" name="orderId" value="@Model.Orderid" />
+                        <input type="hidden" name="itemId" value="@item.OrderitemId" />
+                        <button type="submit" class="btn btn-danger" style="color: #fff;">Delete Item</button>
+                    </form>
+                </td> *@
+                </tr>
+            } 
+    </tbody>
+</table>
+
+<button class="btn btn-secondary" style=" margin-left: 10%; margin-top:1%;  background-color:#4e4949fc; border-color:#4e4949fc; color: #fff;" onclick="window.history.back()">Back to Orders</button>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+

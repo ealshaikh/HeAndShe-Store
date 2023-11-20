@@ -1,0 +1,272 @@
+﻿@model Tuple<IEnumerable<Category>,IEnumerable<Product>,IEnumerable<Customer>, IEnumerable<Testmonial>, string, string, string>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_IndexUserLayout.cshtml";
+
+}
+<head>
+
+	<link rel="stylesheet" type="text/css" href="~/HomeTem/vendor/bootstrap/css/bootstrap.min.css">
+
+	
+	
+	<style>
+		
+
+		h3 {
+			color: #333;
+			text-align: center;
+			text-transform: uppercase;
+			font-family: Poppins-Bold;
+			font-size: 40px;
+			line-height: 1.1;
+			text-transform: uppercase;
+			position: relative;
+			margin: 25px 0 50px;
+		}
+
+			h3::after {
+				content: "";
+				width: 100px;
+				position: absolute;
+				margin: 0 auto;
+				height: 3px;
+				background: #ffdc12;
+				left: 0;
+				right: 0;
+				bottom: -10px;
+			}
+
+		.carousel {
+			width: 650px;
+			margin: 0 auto;
+			padding-bottom: 50px;
+		}
+
+			.carousel .carousel-item {
+				color: #999;
+				font-size: 14px;
+				text-align: center;
+				overflow: hidden;
+				min-height: 340px;
+			}
+
+				.carousel .carousel-item a {
+					color: #eb7245;
+				}
+
+			.carousel .img-box {
+				width: 170px;
+				height: 155px;
+				margin: 0 auto;
+				border-radius: 50%;
+			}
+
+				.carousel .img-box img {
+					width: 100%;
+					height: 100%;
+					display: block;
+					border-radius: 50%;
+				}
+
+			.carousel .testimonial {
+				padding: 30px 0 10px;
+			}
+
+			.carousel .overview {
+				text-align: center;
+				padding-bottom: 5px;
+			}
+
+				.carousel .overview b {
+					color: #333;
+					font-size: 15px;
+					text-transform: uppercase;
+					display: block;
+					padding-bottom: 5px;
+				}
+
+			.carousel .star-rating i {
+				font-size: 18px;
+				color: #ffdc12;
+			}
+
+		.carousel-control-prev, .carousel-control-next {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #000;
+			text-shadow: none;
+			top: 4px;
+		}
+
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 20px;
+				margin-right: 2px;
+			}
+
+		.carousel-control-prev {
+			left: auto;
+			right: 40px;
+		}
+
+		.carousel-control-next i {
+			margin-right: -2px;
+		}
+
+		.carousel .carousel-indicators {
+			bottom: 15px;
+		}
+
+		.carousel-indicators li, .carousel-indicators li.active {
+			width: 11px;
+			height: 11px;
+			margin: 1px 5px;
+			border-radius: 50%;
+		}
+
+
+
+		.carousel-indicators li {
+			background: #927777;
+			border: none;
+		}
+
+			.carousel-indicators li.active {
+				background: #888;
+			}
+
+		h5 {
+			font-size: 1.2rem;
+			background: #ffdc1299;
+			width: fit-content;
+			font-family: monospace;
+			margin: auto;
+		}
+	</style>
+</head>
+
+<body>
+	
+
+	<!--Slider-->
+	<div class="content">
+
+
+		<div class="site-blocks-cover" style="margin-top: -6.2%">
+			<div class="img-wrap">
+				<div class="owl-carousel slide-one-item hero-slider">
+					<div class="slide">
+						<img src="~/hometem/woman.jpg" />
+
+					</div>
+					<div class="slide">
+						<img src="~/hometem/man.jpg" alt="man png" />
+
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 ml-auto align-self-center">
+						<div class="intro">
+							<div class="">
+								<h1 class="text-white font-weight-bold" style="font-size: 5rem; margin-left:7%;">Welcom<br /> @ViewData["FirstName"] @ViewData["LastName"] ! </h1>
+							</div>
+							<div class="text sub-text " style="margin-right:3%;">
+								<p>
+									It's time to explore the word of online shipping with HeAndShe Store ,the best choice ever.
+								</p>
+								<p><a asp-action="Products2" asp-controller="UserHome" class="btn btn-outline-primary btn-md btn-pill">Shop Now</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Categories Title -->
+	<div class="p-b-10" style="margin-left:12%; margin-top:3%;">
+		<h2 class="ltext-103 cl5" style="font-size:35px">
+			Collections Overview
+		</h2>
+	</div>
+	<!-- Categories -->
+	<div class="sec-banner bg0 p-t-80 p-b-50" style="margin-top:-3%;">
+		<div class="container">
+			<div class="row">
+				@foreach (var item in Model.Item1)
+				{
+					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+						<div class="block1 wrap-pic-w">
+							<!-- Card Content -->
+							<img src="@Url.Content("~/Images/" + item.CategoryImage)" asp-append-version="true" width="200" height="200" />
+
+							<a asp-action="GetProductByCategory2" asp-route-id="@item.CategoryId" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+								<div class="block1-txt-child1 flex-col-l">
+									<span class="block1-name ltext-102 trans-04 p-b-8">
+										@item.CategoryName
+									</span>
+
+									<span class="block1-link stext-101 cl0 trans-04">
+										<br>
+										@item.CategoryDescription
+									</span>
+								</div>
+
+								<div class="block1-txt-child2 p-b-4 trans-05">
+									<div class="block1-link stext-101 cl0 trans-04">
+										Shop Now
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--Testimonial-->
+	<h3> Happy Customer says</h3>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			@for (int i = 0; i < Model.Item4.Count(); i++)
+			{
+				<li data-target="#myCarousel" data-slide-to="@i" class="@((i == 0) ? "active" : "")"></li>
+			}
+		</ol>
+
+		<!-- Wrapper for carousel items -->
+		<div class="carousel-inner">
+			@foreach (var testimonialItem in Model.Item4.Where(t => t.Status == "Accepted"))
+			{
+				<div class="carousel-item @(testimonialItem == Model.Item4.First(t => t.Status == "Accepted") ? "active" : "")">
+					<div class="img-box">
+						<img src="@Url.Content("~/Images/" + testimonialItem.Customer.Profilepicture)" asp-append-version="true" alt="IMG-PRODUCT" height="400px;">
+					</div>
+					<p class="testimonial">@testimonialItem.Comment</p>
+					<p class="overview" style="font-size:17px; font-weight:700;"><b>@testimonialItem.Customer.Fname @testimonialItem.Customer.Lname</b></p>
+				</div>
+			}
+		</div>
+
+		<!-- Carousel controls -->
+		<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+			<i class="fa fa-angle-left"></i>
+		</a>
+		<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</div>
+	
+	
+
+</body>

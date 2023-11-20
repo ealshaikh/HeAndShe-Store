@@ -1,0 +1,787 @@
+﻿@model Tuple<IEnumerable<Category>, IEnumerable<Product>,IEnumerable<Testmonial>, IEnumerable<Customer>>
+@{
+	ViewData["Title"] = "Home Page";
+	Layout = null;
+
+}
+
+<head>
+	<title> MainPage</title>
+	<meta name="viewport" content="width=device-width" />
+	<meta charset="UTF-8">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="~/hometem/images/icons/icon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/HomeTem/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/hometem/css/util.css">
+	<link rel="stylesheet" type="text/css" href="~/hometem/css/main.css">
+	<!--===============================================================================================-->
+	<script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+	<!--===============================================================================================-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Acme&family=Archivo+Black&family=Caveat:wght@400;600&family=Chivo:wght@100;400&family=Cookie&family=Great+Vibes&family=Kalam:wght@300;400&family=Lobster&family=Righteous&family=Rubik+Mono+One&family=Satisfy&display=swap" rel="stylesheet">    <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,800">
+	<!--===============================================================================================-->
+	<link href="~/css/bg.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+	<!--===============================================================================================-->
+	<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Lobster&display=swap" rel="stylesheet">
+	<style>
+		.main-menu > li > a {
+			font-family: Poppins-Medium;
+			font-size: 16px;
+			font-weight: bold;
+			color: #333;
+			padding: 5px 0px;
+			transition: all 0.4s;
+			-webkit-transition: all 0.4s;
+			-o-transition: all 0.4s;
+			-moz-transition: all 0.4s;
+		}
+
+		.main-menu {
+			margin-top: 3%;
+		}
+
+		h3 {
+			color: #333;
+			text-align: center;
+			text-transform: uppercase;
+			font-family: Poppins-Bold;
+			font-size: 40px;
+			line-height: 1.1;
+			text-transform: uppercase;
+			position: relative;
+			margin: 25px 0 50px;
+			
+		}
+
+			h3::after {
+				content: "";
+				width: 100px;
+				position: absolute;
+				margin: 0 auto;
+				height: 3px;
+				background: #ffdc12;
+				left: 0;
+				right: 0;
+				bottom: -10px;
+			}
+
+		.carousel {
+			width: 650px;
+			margin: 0 auto;
+			padding-bottom: 50px;
+		}
+
+			.carousel .carousel-item {
+				color: #999;
+				font-size: 14px;
+				text-align: center;
+				overflow: hidden;
+				min-height: 340px;
+			}
+
+				.carousel .carousel-item a {
+					color: #eb7245;
+				}
+
+			.carousel .img-box {
+				width: 170px;
+				height: 155px;
+				margin: 0 auto;
+				border-radius: 50%;
+			}
+
+				.carousel .img-box img {
+					width: 100%;
+					height: 100%;
+					display: block;
+					border-radius: 50%;
+				}
+
+			.carousel .testimonial {
+				padding: 30px 0 10px;
+			}
+
+			.carousel .overview {
+				text-align: center;
+				padding-bottom: 5px;
+			}
+
+				.carousel .overview b {
+					color: #333;
+					font-size: 15px;
+					text-transform: uppercase;
+					display: block;
+					padding-bottom: 5px;
+				}
+
+			.carousel .star-rating i {
+				font-size: 18px;
+				color: #ffdc12;
+			}
+
+		.carousel-control-prev, .carousel-control-next {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #000;
+			text-shadow: none;
+			top: 4px;
+		}
+
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 20px;
+				margin-right: 2px;
+			}
+
+		.carousel-control-prev {
+			left: auto;
+			right: 40px;
+		}
+
+		.carousel-control-next i {
+			margin-right: -2px;
+		}
+
+		.carousel .carousel-indicators {
+			bottom: 15px;
+		}
+
+		.carousel-indicators li, .carousel-indicators li.active {
+			width: 11px;
+			height: 11px;
+			margin: 1px 5px;
+			border-radius: 50%;
+		}
+
+		
+
+		.carousel-indicators li {
+			background: #927777;
+			border: none;
+		}
+
+			.carousel-indicators li.active {
+				background: #888;
+			}
+
+		h5 {
+			font-size: 1.2rem;
+			background: #ffdc1299;
+			width: fit-content;
+			font-family: monospace;
+			margin: auto;
+		}
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar All-->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar ">
+						Enjoy your online shopping with our store
+					</div>
+
+					<div class="right-top-bar flex-w h-full custom-text" style="font-family: 'Acme', sans-serif;">
+
+						<a asp-action="About" asp-controller="Home" class="flex-c-m trans-04 p-lr-25">
+							About Us
+						</a>
+
+						<a asp-action="Contact" asp-controller="Home" class="flex-c-m trans-04 p-lr-25">Contact</a>
+
+						<a asp-action="FAQ" asp-controller="Home" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a asp-action="Privacy" asp-controller="Home" class="flex-c-m trans-04 p-lr-25">Policy</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
+
+					<!-- Logo desktop -->
+					<a asp-action="Index" asp-controller="Home" class="logo">
+						<img src="~/hometem/logo.png" alt="IMG-LOGO" width="150" />
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu" style="font-family: 'Chivo', sans-serif;">
+
+
+								<a asp-action="Index" asp-controller="Home"> Home </a>
+
+							</li>
+
+							<li>
+								<a asp-action="Categories" asp-controller="Home">Categories</a>
+							</li>
+
+							<li class="label1" data-label1="hot">
+								<a asp-action="Products" asp-controller="Home">Discover</a>
+							</li>
+
+
+
+
+							<li>
+								<a asp-action="Testmonials" asp-controller="Home">Testmonials</a>
+							</li>
+
+						</ul>
+					</div>
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+
+
+						<div class="wrap-icon-header flex-w flex-r-m">
+
+
+
+							<button style="background: #6c7ae0;
+
+
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				padding: 8px 12px;
+				border-radius: 20px;
+				cursor: pointer;
+				margin: 0 2%;
+				">
+								<a asp-action="Login" asp-controller="LoginandRegister" style="color: white; "> Login </a>
+							</button>
+
+
+
+
+
+							<button style="background: #6c7ae0;
+
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				padding: 8px 12px;
+				border-radius: 20px;
+				cursor: pointer;
+				margin: 0 2%;
+				">
+								<a asp-action="Register" asp-controller="LoginandRegister" style="color: white; "> Signup </a>
+
+							</button>
+
+
+
+
+
+
+						</div>
+					</div>
+
+
+
+
+
+				</nav>
+			</div>
+		</div>
+
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->
+			<div class="logo-mobile">
+				<a asp-action="Index" asp-controller="Home" class="logo">
+					<img src="~/hometem/logo.png" alt="IMG-LOGO" width="150" />
+				</a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<button style="background: #6c7ae0; font-size: 16px;
+				padding: 8px 12px;
+				border-radius: 20px;
+				cursor: pointer;">
+						<a asp-action="Login" asp-controller="LoginandRegister" style="color: white; "> Login </a>
+					</button>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<button style="background: #6c7ae0; font-size: 16px;
+				padding: 8px 12px;
+				border-radius: 20px;
+				cursor: pointer;">
+						<a asp-action="Register" asp-controller="LoginandRegister" style="color: white; "> Register </a>
+					</button>
+				</div>
+
+
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			
+
+			<ul class="main-menu-m">
+				<li class="active-menu" style="font-family: 'Chivo', sans-serif;">
+
+
+					<a asp-action="Index" asp-controller="Home"> Home </a>
+
+				</li>
+
+				<li>
+					<a asp-action="Categories" asp-controller="Home">Categories</a>
+				</li>
+
+				<li>
+					<a asp-action="Products" asp-controller="Home">Discover</a>
+				</li>
+
+
+
+
+				<li>
+					<a asp-action="Testmonials" asp-controller="Home">Testimonials</a>
+				</li>
+				
+
+
+				<li>
+					<a asp-action="About" asp-controller="Home" >
+						About Us
+					</a>
+				</li>
+				<li>
+					<a asp-action="Contact" asp-controller="Home" >Contact</a>
+				</li>
+				<li>
+					<a asp-action="FAQ" asp-controller="Home" >Help & FAQs</a>
+				</li>
+				<li>
+					<a asp-action="Privacy" asp-controller="Home">Policy</a>
+				</li>
+
+
+			</ul>
+		</div>
+
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="~/HomeTem/images/icons/icon-close2.png" alt="CLOSE" />
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+
+	</header>
+
+	<!-- Slider -->
+	<section class="section-slide">
+		<div class="wrap-slick1">
+			<div class="slick1">
+				<div class="item-slick1" style="background-image: url('HomeTem/woman.jpg');">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+								<span class="ltext-101 cl2 respon2">
+									Women Collection
+								</span>
+							</div>
+
+							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+									NEW SEASON
+								</h2>
+							</div>
+
+							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600" style="color:#7c88e1;">
+								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Shop Now
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item-slick1" style="background-image: url('hometem/man.jpg');">
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
+								<span class="ltext-101 cl2 respon2">
+									Men Collection
+								</span>
+							</div>
+
+							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+									New arrivals
+								</h2>
+							</div>
+
+							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
+								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Shop Now
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<br />
+	<br />
+
+
+
+	<!-- Categories Title -->
+	<div class="p-b-10" style="margin-left:12%; margin-top:2%;">
+		<h2 class="ltext-103 cl5" style="font-size:35px">
+			Collections Overview
+		</h2>
+	</div>
+	<!-- Categories -->
+	<div class="sec-banner bg0 p-t-80 p-b-50" style="margin-top:-3%;">
+		<div class="container">
+			<div class="row">
+				@foreach (var item in Model.Item1)
+				{
+					<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+						<div class="block1 wrap-pic-w">
+							<!-- Card Content -->
+							<img src="@Url.Content("~/Images/" + item.CategoryImage)" asp-append-version="true" width="200" height="200" />
+
+							<a asp-action="GetProductByCategory" asp-route-id="@item.CategoryId" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+								<div class="block1-txt-child1 flex-col-l">
+									<span class="block1-name ltext-102 trans-04 p-b-8">
+										@item.CategoryName
+									</span>
+
+									<span class="block1-link stext-101 cl0 trans-04">
+										<br>
+										@item.CategoryDescription
+									</span>
+								</div>
+
+								<div class="block1-txt-child2 p-b-4 trans-05">
+									<div class="block1-link stext-101 cl0 trans-04">
+										Shop Now
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+
+
+	<!-- Featured Products Slider -->
+@* 	<div id="featuredProductsCarousel" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			@foreach (var featuredProduct in Model.Item2)
+			{
+				<div class="carousel-item @(featuredProduct == Model.Item2.First() ? "active" : "")">
+					<div class="row">
+						<div class="col-md-6">
+							<img src="@Url.Content("~/Images/" + featuredProduct.ProductImage)" class="d-block w-100" alt="Featured Product">
+						</div>
+						<div class="col-md-6">
+							<div class="carousel-caption">
+								<h3>@featuredProduct.ProductName</h3>
+								<p class="product-description">@featuredProduct.ProductDescription</p>
+								<p class="product-price">$@featuredProduct.ProductPrice</p>
+								<!-- Add more details as needed -->
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+
+		<!-- Carousel controls -->
+		<a class="carousel-control-prev" href="#featuredProductsCarousel" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#featuredProductsCarousel" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+ *@
+
+<br />
+<br />
+	<!--Testimonial-->
+	<h3> Happy Customer says</h3>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+		<!-- Carousel indicators -->
+		<ol class="carousel-indicators">
+			@for (int i = 0; i < Model.Item3.Count(); i++)
+			{
+				<li data-target="#myCarousel" data-slide-to="@i" class="@((i == 0) ? "active" : "")"></li>
+			}
+		</ol>
+
+		<!-- Wrapper for carousel items -->
+		<div class="carousel-inner">
+			@foreach (var testimonialItem in Model.Item3.Where(t => t.Status == "Accepted"))
+			{
+				<div class="carousel-item @(testimonialItem == Model.Item3.First(t => t.Status == "Accepted") ? "active" : "")">
+					<div class="img-box">
+						<img src="@Url.Content("~/Images/" + testimonialItem.Customer.Profilepicture)" asp-append-version="true" alt="IMG-PRODUCT" height="400px;">
+					</div>
+					<p class="testimonial">@testimonialItem.Comment</p>
+					<p class="overview"><b>@testimonialItem.Customer.Fname @testimonialItem.Customer.Lname</b></p>
+				</div>
+			}
+		</div>
+
+		<!-- Carousel controls -->
+		<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+			<i class="fa fa-angle-left"></i>
+		</a>
+		<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</div>
+
+	<br />
+	<br />
+	
+
+
+	<!-- Footer -->
+	<footer class="bg3  p-b-32">
+		<div class="container">
+
+
+			<div class="p-t-40">
+
+
+				<p class="stext-107 cl6 txt-center">
+					Contact us:  HeAndSheSupport@gmail.com
+				</p>
+				<p class="stext-107 cl6 txt-center">
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> | All rights reserved To Esraa Alshaikh 🤍
+				</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/bootstrap/js/popper.js"></script>
+	<script src="~/HomeTem/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function () {
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/daterangepicker/moment.min.js"></script>
+	<script src="~/HomeTem/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/slick/slick.min.js"></script>
+	<script src="~/HomeTem/js/slick-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/parallax100/parallax100.js"></script>
+	<script>
+		$('.parallax100').parallax100();
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function () { // the containers for all your galleries
+			$(this).magnificPopup({
+				delegate: 'a', // the selector for gallery item
+				type: 'image',
+				gallery: {
+					enabled: true
+				},
+				mainClass: 'mfp-fade'
+			});
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/isotope/isotope.pkgd.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function (e) {
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function () {
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function () {
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function () {
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function () {
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function () {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function () {
+				ps.update();
+			})
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="~/HomeTem/js/main.js"></script>
+
+	<!--===============================================================================================-->
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<script>
+		(function () {
+			"use strict";
+
+			var carousels = function () {
+				$(".owl-carousel1").owlCarousel({
+					loop: true,
+					center: true,
+					margin: 0,
+					responsiveClass: true,
+					nav: false,
+					responsive: {
+						0: {
+							items: 1,
+							nav: false
+						},
+						680: {
+							items: 2,
+							nav: false,
+							loop: false
+						},
+						1000: {
+							items: 3,
+							nav: true
+						}
+					}
+				});
+			};
+
+			(function ($) {
+				carousels();
+			})(jQuery);
+		})();
+	</script>
+	
+</body>

@@ -1,0 +1,96 @@
+﻿@model Customer
+
+@{
+	ViewData["Title"] = "AccountInfo";
+	Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+}
+
+<head>
+	<link href="~/accountinfo.css" rel="stylesheet" />
+	<style>
+		label {
+			display: block;
+			outline: none;
+			border: none;
+			font-weight: 600;
+			color: white;
+			font-size: 18px;
+		}
+
+		body {
+			background: #F0F0F0;
+		}
+
+		.form-group input[type="file"] {
+			border: none;
+			background-color: #fff;
+		}
+	</style>
+</head>
+
+<body>
+	
+
+	<!--Content-->
+
+<br />
+<br />
+	
+		<div class="registration-form">
+		<form asp-action="AccountInfo" asp-route-id="@ViewBag.UserId" method="post" enctype="multipart/form-data">
+			
+				<!-- Form elements with modified labels -->
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input type="hidden" asp-for="CustomerId" />
+
+				<div class="form-group">
+					<label asp-for="Fname" class="control-label">First Name</label>
+					<input asp-for="Fname" class="form-control" />
+					<span asp-validation-for="Fname" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Lname" class="control-label">Last Name</label>
+					<input asp-for="Lname" class="form-control" />
+					<span asp-validation-for="Lname" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Ph" class="control-label">Phone Number</label>
+					<input asp-for="Ph" class="form-control" />
+					<span asp-validation-for="Ph" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Birthdate" class="control-label">BirthDate</label>
+					<input asp-for="Birthdate" class="form-control" />
+					<span asp-validation-for="Birthdate" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="ImageFile" class="control-label">User Image</label>
+					<input type="file" asp-for="ImageFile" class="form-control-file"  />
+				<span asp-validation-for="ImageFile" class="error-message" style="color:#fff"></span>
+				</div>
+
+			
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary" style="background-color: #ff6b93;
+    border-color: #007bff;
+    font-weight: 600;">
+					Save
+				</button>
+			</div>
+			</form>
+		
+		</div>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+		<script src="assets/js/script.js"></script>
+	
+
+	
+
+
+
+</body>

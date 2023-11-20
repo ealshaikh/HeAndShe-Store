@@ -1,0 +1,188 @@
+﻿@model IEnumerable<He_SheStore.Models.JoinTablesReview>
+
+@{
+    ViewData["Title"] = "ProductReviews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+
+
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+
+    <style>
+
+        h1 {
+            margin-left: 5%;
+            padding-top: 2%;
+        }
+
+        p a {
+            color: #787aff !important;
+            margin-left: 5%;
+        }
+
+        .custom-table {
+            width: 88%;
+            margin-top: 2%;
+        }
+
+            .custom-table th {
+                color: #fff;
+                font-weight: bold;
+                font-size: 15px;
+                background: #696cff;
+                padding: 10px;
+            }
+
+            .custom-table td {
+                background: #9eaab8;
+                color: #fff;
+                font-weight: 500;
+                font-size: 15px;
+                padding: 10px;
+            }
+
+        .custom-button {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 100;
+        }
+
+            .custom-button i {
+                color: #ffffff;
+                font-size: 13px;
+            }
+
+        table.dataTable {
+            width: 90%;
+            margin: 0 auto;
+            clear: both;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        div.dt-buttons {
+            /* position: relative; */
+            float: left;
+            margin-left: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            /* float: right; */
+            text-align: right;
+            margin-right: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            clear: both;
+            float: left;
+            padding-top: 0.755em;
+            margin-left: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right;
+            text-align: right;
+            padding-top: 0.25em;
+            margin-right: 5%;
+        }
+        tr td {font-size:20px;}
+    </style>
+</head>
+<h1>Products Reviews</h1>
+
+<table class=" table-bordered custom-table" id="example">
+
+    <thead class="thead-dark">
+        <tr>
+            
+            <th scope="col">Category Name</th>
+            <th scope="col">Product Name</th>
+            
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Review</th>
+            <th scope="col">Product Rating \5</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Customer name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@(item.Category?.CategoryName ?? "DefaultCategoryName")</td>
+
+
+                <td>@item.Product.ProductName</td>
+               
+                <td>
+                    <img src=@Url.Content("~/Images/"+item.Product.ProductImage)
+                         asp-append-version="true" style="border-radius:20%;"
+                         width="150" height="150" />
+                </td>
+
+                <td>
+                    @item.Review.Comment
+                </td>
+                <td>
+                    @item.Review.Reating
+                </td>
+                <td>
+                    @item.Customer.CustomerId
+                   
+                </td>
+                <td>
+                    @item.Customer.Fname
+                    @item.Customer.Lname
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+<script>
+
+    $(document).ready(function () {
+        //example id
+        $('#example').DataTable({
+
+            dom: 'Bfrtip',
+            //ican delete it
+            buttons: [
+
+                'copyHtml5',
+
+                'excelHtml5',
+
+                'csvHtml5',
+
+                'pdfHtml5'
+
+            ]
+
+        });
+    });
+
+</script>

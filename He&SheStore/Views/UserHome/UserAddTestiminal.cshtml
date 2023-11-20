@@ -1,0 +1,86 @@
+﻿@model Testmonial
+@{
+	ViewData["Title"] = "UserAddTestiminal";
+	Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<head>
+
+
+
+	<style>
+
+
+		.w-fulll {
+			width: 90%;
+			padding-left: 70px;
+			padding-top: 30px;
+		}
+	</style>
+
+
+	<!-- Core CSS -->
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/css/core.css" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="~/AdminTemplate/assets/css/demo.css" />
+
+	<!-- Vendors CSS -->
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+	<!-- Page CSS -->
+	<!-- Helpers -->
+	<script src="~/AdminTemplate/assets/vendor/js/helpers.js"></script>
+
+	<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+	<script src="~/AdminTemplate/assets/js/config.js"></script>
+</head>
+
+
+<body>
+
+	
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<form method="post" asp-action="AddTestimonial" asp-controller="Testmonials" class="validate-form w-fulll">
+
+		<h5 class="mtext-108 cl2 p-b-7">
+			Tell Us What you think, don't be shy!
+		</h5>
+		<input type="hidden" asp-for="Testmonialid" />
+		<input type="hidden" asp-for="CustomerId" />
+		<input type="hidden" value="Pending" asp-for="Status" />
+		<div class="row p-b-25">
+
+
+
+			<div class="row p-b-25">
+				<div class="col-12 p-b-5" data-validate="Comment is required">
+					<label class="stext-102 cl3" for="review">Your opinion is important</label>
+					<textarea asp-for="Comment" class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"></textarea>
+				</div>
+
+
+
+			</div>
+		</div>
+
+
+
+		<button type="submit" class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">Submit Testnoinal</button>
+
+	</form>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+</body>

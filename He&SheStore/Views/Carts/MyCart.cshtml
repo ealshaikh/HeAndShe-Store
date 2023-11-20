@@ -1,0 +1,233 @@
+﻿@model IEnumerable<Cart>
+@{
+	ViewData["Title"] = "MyCart";
+	Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+	decimal totalPriceSum = Model.Sum(cartItem => cartItem.TotalPrice ?? 0);
+	decimal totalItemsNumber = Model.Sum(cartItem => cartItem.ProductQuantity ?? 0);
+
+
+}
+
+<head>
+
+
+	<style>
+
+
+		.h-auto1 {
+			height: 60px !important;
+		}
+
+		.w-px-401 {
+			width: 80px !important;
+		}
+
+	</style>
+
+
+	<!-- Core CSS -->
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/css/core.css" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="~/AdminTemplate/assets/css/demo.css" />
+
+	<!-- Vendors CSS -->
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+	<link rel="stylesheet" href="~/AdminTemplate/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+	<!-- Page CSS -->
+	<!-- Helpers -->
+	<script src="~/AdminTemplate/assets/vendor/js/helpers.js"></script>
+
+	<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+	<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+	<script src="~/AdminTemplate/assets/js/config.js"></script>
+</head>
+
+<body>
+
+
+	<br />
+	<br />
+	<br />
+
+
+
+	<!-- Shoping Cart -->
+	<form class="bg0 p-t-75 p-b-85">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								<tr class="table_head">
+									<th class="column-1">Product</th>
+									<th class="column-2">Name</th>
+									<th class="column-3">Price</th>
+
+									<th class="column-3">Total</th>
+									<th class="column-3">Increase </th>
+									<th class="column-3">Quantity</th>
+									<th class="column-3">Decrease </th>
+									<th class="column-3">Remove</th>
+									<th class="column-3">Move To Wishlist</th>
+
+								</tr>
+								@foreach (var cartItem in Model)
+								{
+									<tr class="table_row">
+										<td>
+											<img src="@Url.Content("~/Images/" + @cartItem.Product.ProductImage)" asp-append-version="true" style="width: 150px;  margin-right:15px;" />
+
+										</td>
+										<td class="column-1" style="text-align:center;">@cartItem.Product.ProductName</td>
+										<td class="column-3">@cartItem.Product.ProductPrice</td>
+
+
+
+
+
+
+
+										<td class="column-5"> @cartItem.TotalPrice JD</td>
+
+
+										<td>
+
+
+
+											<a asp-action="IncrementQuantity" asp-route-id="@cartItem.CartId" asp-controller="Carts">+</a>
+										</td>
+
+										<td class="column-4">@cartItem.ProductQuantity</td>
+
+										<td class="column-5">
+
+											<a asp-action="DecrementQuantity" asp-route-id="@cartItem.CartId" asp-controller="Carts">-</a>
+
+										</td>
+
+										<!--Remove-->
+										<td class="column-6" style="text-align:center;">
+
+
+											<a asp-action="RemoveFromCart" asp-route-id="@cartItem.CartId">
+
+												<i class="fa-solid fa-trash" style="font-size:25px; color:#555"></i>
+
+											</a>
+
+
+
+										</td>
+										<td>
+											<a asp-action="AddToWishlistFromCart" asp-route-productId="@cartItem.ProductId" asp-controller="Carts" style="color:#000">Move</a>
+										</td>
+
+									</tr>
+
+								}
+
+							</table>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+						<h4 class="mtext-109 cl2 p-b-30">
+							Order Summary
+						</h4>
+
+						<div class="flex-w flex-t bor12 p-b-13" style="margin-bottom: 10px;">
+							<div class="size-208">
+								<span class="stext-110 cl2">
+									Items:
+								</span>
+							</div>
+
+							<div class="size-209">
+								<span class="mtext-110 cl2" style="font-size:16px;">
+									@totalItemsNumber
+								</span>
+							</div>
+						</div>
+						<div class="flex-w flex-t bor12 p-b-13" style="margin-bottom: 10px;">
+							<div class="size-208">
+								<span class="stext-110 cl2">
+									subtotal Price:
+								</span>
+							</div>
+
+							<div class="size-209">
+								<span class="mtext-110 cl2" style="font-size:16px;">
+									@totalPriceSum JD
+								</span>
+							</div>
+						</div>
+
+						<div class="flex-w flex-t bor12 p-b-13" style="margin-bottom: 10px;">
+							<div class="size-208">
+								<span class="stext-110 cl2">
+									Shopping cost:
+								</span>
+							</div>
+
+							<div class="size-209">
+								<span class="mtext-110 cl2" style="font-size:16px;">
+									Free!
+								</span>
+							</div>
+						</div>
+
+
+
+						<div class="flex-w flex-t p-t-27 p-b-33" style="margin-bottom: 10px;">
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Total Cost:
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									@totalPriceSum JD
+								</span>
+							</div>
+						</div>
+
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" style="margin-bottom:5%;">
+							<a asp-action="Products2" asp-controller="UserHome" class="hov" style="color:#fff"> Update Cart</a>
+
+						</button>
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+
+							<a asp-action="Checkout" asp-controller="UserHome" class="hov" style="color:#fff"> Proceed to Checkout</a>
+
+						</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+
+</body>
+
+

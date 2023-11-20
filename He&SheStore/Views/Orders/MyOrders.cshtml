@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "MyOrders";
+    Layout = "~/Views/Shared/_UserHomeLayout.cshtml";
+}
+
+<head>
+    <style>
+        h1 {
+            padding-top: 135px;
+            padding-bottom: 40px;
+            padding-left: 10%;
+        }
+
+        .h1 {
+            padding-bottom: 40px;
+            padding-left: 10%;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+
+
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+</head>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<h1>My Orders history </h1>
+<table class="table table-bordered" style="width:80%; margin:auto auto;">
+    <thead style="background: #4f58ad; color:#fff">
+        <tr>
+            <th>
+                Order Status
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Total Amount
+            </th>
+            <th>
+                Details
+            </th>
+           @*  <th>
+                Delete Order
+            </th> *@
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Orderdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Totalamount)
+                </td>
+
+                <td>
+                    <button class="btn btn-warning" style="background-color:#4e4949fc; border-color:#4e4949fc;">
+                        <a href="@Url.Action("OrderDetails", "Orders", new { orderId = item.Orderid })"
+                           style="color: #fff;">View More</a>
+                    </button>
+                </td>
+
+                <!-- Delete Order Button -->
+               @*  <td>
+                    <form asp-action="DeleteOrder" asp-controller="Orders" method="post">
+                        <input type="hidden" name="orderId" value="@item.Orderid" />
+                        <button type="submit" class="btn btn-danger" style="color: #fff;">Delete Order</button>
+                    </form>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+<br />
+
+<!-- ... (remaining code) ... -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+<script>
+
+    $(document).ready(function () {
+        //example id
+        $('#example').DataTable({
+
+            dom: 'Bfrtip',
+            //ican delete it
+            buttons: [
+                'pdfHtml5'
+            ]
+        });
+    });
+
+</script>

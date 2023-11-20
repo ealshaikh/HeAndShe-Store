@@ -1,0 +1,76 @@
+﻿@model IEnumerable<He_SheStore.Models.Review>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Customer ID
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Product ID
+            </th>
+           
+            <th>
+                Product Image
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reating)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Fname)
+                    @Html.DisplayFor(modelItem => item.Customer.Lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductId)
+                </td>
+               
+                <td>
+                    <img src="@Url.Content("~/Images/" + item.Product.ProductImage)" asp-append-version="true" style="border:none;" width="150" height="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reating)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Reviewid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Reviewid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Reviewid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

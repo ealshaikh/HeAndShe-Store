@@ -1,0 +1,406 @@
+﻿@model Tuple<IEnumerable<Category>,IEnumerable<Product>,IEnumerable<Customer>,IEnumerable<Testmonial>,string,string,string>
+
+
+
+@{
+
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <style>
+        h2 {
+            padding: 5px;
+            background: #696cff;
+            width: 100%;
+            color: #fff;
+            font-size: 25px;
+            font-family: cursive;
+           /*  border-radius: 15px; */
+            text-shadow: 2px 2px 10px #000;
+            text-align:center;
+            
+        }
+
+        .h3 {
+            margin-left: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            background: #6568f8;
+            width: fit-content;
+            color: white;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .custom-table {
+            width: 88%;
+            margin-top: 2%;
+        }
+
+            .custom-table th {
+                color: #fff;
+                font-weight: bold;
+                font-size: 15px;
+                background: #696cff;
+                padding: 10px;
+            }
+
+            .custom-table td {
+                background: #9eaab8;
+                color: #fff;
+                font-weight: 500;
+                font-size: 15px;
+                padding: 10px;
+            }
+
+        .custom-button {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 100;
+        }
+
+            .custom-button i {
+                color: #ffffff;
+                font-size: 13px;
+            }
+
+        table.dataTable {
+            width: 90%;
+            margin: 0 auto;
+            clear: both;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        div.dt-buttons {
+            /* position: relative; */
+            float: left;
+            margin-left: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            /* float: right; */
+            text-align: right;
+            margin-right: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            clear: both;
+            float: left;
+            padding-top: 0.755em;
+            margin-left: 5%;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right;
+            text-align: right;
+            padding-top: 0.25em;
+            margin-right: 5%;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/0e0000ed43.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+<body>
+
+   
+    <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+         id="layout-navbar">
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+            </a>
+        </div>
+
+        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <!-- Search -->
+            <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                    <i class="bx bx-search fs-4 lh-0"></i>
+                    <input type="text"
+                           class="form-control border-0 shadow-none"
+                           placeholder="Search..."
+                           aria-label="Search..." />
+                </div>
+            </div>
+            <!-- /Search -->
+
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                <!-- Admin User -->
+                <div class="wrap-icon-header flex-w flex-r-m">
+
+
+                    <!-- User -->
+                    <div class="nav-item navbar-dropdown dropdown-user dropdown">
+                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            <div class="avatar1">
+                                <img src="@Url.Content("~/Images/" + ViewData["ProfilePicture"])" alt="Profile Picture" class=" rounded-circle" style="width:80px; height:50px; box-shadow:2px 2px 5px black;" />
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar">
+                                                <img src="@Url.Content("~/Images/" + ViewData["ProfilePicture"])" alt="Profile Picture" class="w-px-40 h-auto rounded-circle" style="width:150px; height:50px; box-shadow:2px 2px 5px black;" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <p style="font-weight:bold; margin-top:10px;">@ViewData["FirstName"] @ViewData["LastName"]</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a asp-action="AccountInfo" asp-controller="Admin" class="dropdown-item">
+                                    <i class="fa-solid fa-user-pen" style="color: #697a8d"></i>&nbsp; Edit Profile Info
+                                </a>
+                            </li>
+
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <a asp-action="Logout" asp-controller="LoginandRegister" class="dropdown-item">
+                                    <i class="fa-solid fa-arrow-right-from-bracket" style="color: #697a8d"></i>&nbsp; Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/Admin User -->
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+        <div class="row">
+
+            
+            <div class="col-lg-12 col-md-6 order-1">
+                    <h2 >statistics</h2>
+                <div class="row">
+                    <!--NumOfCustomers-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Total Number Of Customers</span>
+                                <h3 class="card-title mb-2" style="text-align:center; color:red;">@ViewBag.numOfCustomers</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Total Number Of Reviews-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;"> Total Number Of Reviews</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;">@ViewBag.reviews</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--TotalRatings-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Total Ratings Number</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;">@ViewData["totalRatings"]</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--MostReviewedProduct-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Most Reviewed Product</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;     font-size: 18px;">@ViewBag.MostReviewedProduct</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--MaxPrice-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Max Product Price</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;"> @ViewBag.maxPrice JD</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--MinPrice-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Min Product Price</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;"> @ViewData["minPrice"] JD</h3>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <!--Wishlist Most Added Product-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;">Wishlist Most Added Product </span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red;    font-size: 18px;"> @ViewBag.MostAddedProductName</h3>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <!--Wishlist Most Added Product Times-->
+                    <div class="col-lg-3 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <span class="fw-semibold d-block mb-1" style="text-align:center; margin-bottom:10px;color:#000;"> Most Added Product Times</span>
+                                <h3 class="card-title text-nowrap mb-1" style="text-align:center; color:red; font-size:18px;">Added @ViewBag.MostAddedProductCount Times</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+             
+
+
+
+
+            
+            </div>
+         
+         </div>           
+    </div>     
+      
+
+ </div>           
+ </div>
+
+    <div class="row">
+        <!-- Chart Section -->
+        <div class="col-lg-12 col-md-6 order-1">
+            <h3 class="h3">User Birthdate Chart</h3>
+            <canvas id="userBirthdateChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+    
+    
+
+    <script>
+        // Your existing DataTable initialization
+
+        // Example data for user birthdates (replace this with actual data)
+        var userBirthdates = @Json.Serialize(Model.Item3.Select(c => c.Birthdate).ToList());
+
+        // Count users under 2000 and above 2000
+        var under2000 = userBirthdates.filter(date => new Date(date).getFullYear() < 2000).length;
+        var above2000 = userBirthdates.filter(date => new Date(date).getFullYear() >= 2000).length;
+
+        // Create a bar chart
+        var ctx = document.getElementById('userBirthdateChart').getContext('2d');
+        var userBirthdateChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Under 2000', 'Above 2000'],
+                datasets: [{
+                    label: 'Number of Users',
+                    data: [under2000, above2000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+  
+
+
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+<script>
+
+    $(document).ready(function () {
+        //example id
+        $('#example').DataTable({
+
+            dom: 'Bfrtip',
+            //ican delete it
+            buttons: [
+
+                'copyHtml5',
+
+                'excelHtml5',
+
+                'csvHtml5',
+
+                'pdfHtml5'
+
+            ]
+
+        });
+    });
+
+</script>
